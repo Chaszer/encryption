@@ -13,11 +13,6 @@ const e = 7;
 console.log('e = ' + e)
 console.log('     ')
 
-
-
-
-
-
 console.log('НОД, нахождение "e" и проверка')
 function NOD(a, b) {
     while (b !== 0) {
@@ -59,7 +54,6 @@ if (e <= fn && isPrime(e) && checkCoprime(e, fn)) {
 }
 console.log('     ')
 
-
 console.log('Продвинутый алгорит Евклида')
 // Функция для вычисления NOD и коэффициентов расширенного алгоритма Евклида
 function extendedEvklida(a, b) {
@@ -94,8 +88,6 @@ try {
     console.error(error.message);
 }
 console.log('     ')
-
-
 
 console.log('Ниже проверка на простые числа')
 // Проверка значений на простое число
