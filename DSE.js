@@ -1,48 +1,47 @@
-function encryption(text, key1, key2) {
-    const dict = {
-        'А': 'Я', 'Б': 'Т', 'В': 'Э', 'Г': 'Ж', 'Д': 'М', 'Е': 'Р', 'Ж': 'Щ', 'З': 'Ы', 'И': 'Ф', 'К': 'К',
-        'Л': 'Ь', 'М': 'Ч', 'Н': 'Х', 'О': 'А', 'П': 'В', 'Р': 'Д', 'С': 'С', 'Т': 'И', 'У': 'Ц', 'Ф': 'Г',
-        'Х': 'Е', 'Ц': 'З', 'Ч': 'П', 'Ш': 'Н', 'Щ': 'Л', 'Ъ': 'Ъ', 'Ы': 'Ш', 'Ь': 'Б', 'Э': 'У', 'Ю': 'Ю',
-        'Я': 'Й'
-    };
-
-    text = text.toUpperCase();
-    let result = '';
-
-    for (let char of text) {
-        result += dict[char] || char;
+// Функция для шифрования текста
+function encrypt(text, key) {
+    var encryptedText = "";
+    for (var i = 0; i < text.length; i++) {
+        var char = text[i];
+        var index = key[0].indexOf(char);
+        if (index !== -1) {
+            encryptedText += key[1][index];
+        } else {
+            encryptedText += char;
+        }
     }
-
-    return result;
+    return encryptedText;
 }
 
-function decryption(text, key1, key2) {
-    const dict = {
-        'Я': 'А', 'Т': 'Б', 'Э': 'В', 'Ж': 'Г', 'М': 'Д', 'Р': 'Е', 'Щ': 'Ж', 'Ы': 'З', 'Ф': 'И', 'К': 'К',
-        'Ь': 'Л', 'Ч': 'М', 'Х': 'Н', 'А': 'О', 'В': 'П', 'Д': 'Р', 'С': 'С', 'И': 'Т', 'Ц': 'У', 'Г': 'Ф',
-        'Е': 'Х', 'З': 'Ц', 'П': 'Ч', 'Н': 'Ш', 'Л': 'Щ', 'Ъ': 'Ъ', 'Ш': 'Ы', 'Б': 'Ь', 'У': 'Э', 'Ю': 'Ю',
-        'Й': 'Я'
-    };
-
-    text = text.toUpperCase();
-    let result = '';
-
-    for (let char of text) {
-        result += dict[char] || char;
+// Функция для расшифрования текста
+function decrypt(text, key) {
+    var decryptedText = "";
+    for (var i = 0; i < text.length; i++) {
+        var char = text[i];
+        var index = key[1].indexOf(char);
+        if (index !== -1) {
+            decryptedText += key[0][index];
+        } else {
+            decryptedText += char;
+        }
     }
-
-    return result;
+    return decryptedText;
 }
 
-// Пример использования
-const plaintext = "КОДИРОВАНИЕ";
+// Параметры ключа
+var A0 = "АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+var A1 = "ЯТЭЖМРЩЫФКЬЧХАВДСИЦГЕЗПНЛЪШБУЮ";
 
-// Ключи
-const key1 = 5;
-const key2 = 10;
+// Создаем массивы ключей
+var key = [A0, A1];
 
-const ciphertext = encryption(plaintext, key1, key2);
+// Текст для шифрования и расшифрования
+var plaintext = "КОДИРОВАНИЕ";
+
+// Шифруем текст
+var ciphertext = encrypt(plaintext, key);
 console.log("Зашифрованный текст:", ciphertext);
 
-const decryptionText = decryption(ciphertext, key1, key2);
-console.log("Расшифрованный текст:", decryptionText);
+// Расшифровываем текст
+var decryptedText = decrypt(ciphertext, key);
+console.log("Расшифрованный текст:", decryptedText);
